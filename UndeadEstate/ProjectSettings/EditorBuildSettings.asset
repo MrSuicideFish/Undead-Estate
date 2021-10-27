@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Malco/Testbed.unity
+    guid: 252976494402f34429725fdea0293afe
   m_configObjects: {}

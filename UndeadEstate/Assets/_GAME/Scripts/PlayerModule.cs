@@ -2,14 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Mirror;
 using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class PlayerModule : MonoBehaviour
+public class PlayerModule : NetworkBehaviour
 {
-    public string playerId;
     public PlayerWeapon weapon;
 
     public float walkSpeed = 5;
@@ -31,10 +31,55 @@ public class PlayerModule : MonoBehaviour
         _moveCollider = this.GetComponent<CapsuleCollider>();
     }
 
+    public override void OnStartClient()
+    {
+        // setup camera
+        CinemachineVirtualCamera camRes = Resources.Load<CinemachineVirtualCamera>($"PLAYER_CAMERA");
+        CinemachineVirtualCamera playerCam = EstateNetworkManager.Instantiate(camRes);
+        playerCam.Follow = this.transform;
+        playerCam.transform.position = this.transform.position;
+
+        CinemachineTransposer transposer = playerCam.AddCinemachineComponent<CinemachineTransposer>();
+        transposer.m_BindingMode = CinemachineTransposer.BindingMode.WorldSpace;
+
+        var position = this.transform.position;
+        playerCam.transform.position = new Vector3()
+        {
+            x = position.x,
+            y = position.y + 10,
+            z = position.z - 10
+        };
+
+        playerCam.transform.eulerAngles = new Vector3(30, 0, 0);
+        transposer.m_FollowOffset = new Vector3(0, 10, -15);
+
+        // set camera
+        _camera = playerCam;
+        
+        if (GetNetworkIdentity().isLocalPlayer)
+        {
+            this.gameObject.AddComponent<PlayerInput>();
+            _camera.gameObject.SetActive(true);
+        }
+        else
+        {
+            _camera.gameObject.SetActive( false );
+        }
+    }
+
+    public NetworkIdentity GetNetworkIdentity()
+    {
+        return this.GetComponent<NetworkIdentity>();
+    }
+
     public void SetPlayerCamera(CinemachineVirtualCamera cam)
     {
-
         _camera = cam;
+    }
+
+    public CinemachineVirtualCamera GetPlayerCamera()
+    {
+        return _camera;
     }
 
     public void Fire()
@@ -67,4 +112,6 @@ public class PlayerModule : MonoBehaviour
         //rotation = Snapping.Snap(rotation, 45.0f);
         _rigidbody.MoveRotation(quaternion.Euler(0, rotation, 0));
     }
+
+
 }

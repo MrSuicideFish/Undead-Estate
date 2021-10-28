@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
         return EstateNetworkManager.Instantiate(module, 
             new Vector3(0, 10, 0),
         Quaternion.Euler(0, 0, 0));
-        
     }
 
     public void KillPlayer(PlayerModule mod)

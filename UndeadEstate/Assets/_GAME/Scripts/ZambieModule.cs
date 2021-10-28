@@ -20,12 +20,15 @@ public class ZambieModule : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
+        if (NetworkClient.isConnected && NetworkClient.Ready() && NetworkClient.isHostClient)
         {
-            target = NetworkServer.spawned[NetworkServer.localConnection.identity.netId].gameObject;
-            return;
+            if (target == null)
+            {
+                target = NetworkServer.spawned[NetworkServer.localConnection.identity.netId].gameObject;
+                return;
+            }
+            
+            _navMeshAgent.SetDestination(target.transform.position);
         }
-        
-        _navMeshAgent.SetDestination(target.transform.position);
     }
 }

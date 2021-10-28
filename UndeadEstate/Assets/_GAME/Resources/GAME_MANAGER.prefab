@@ -65,11 +65,11 @@ MonoBehaviour:
   PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  serverTickRate: 30
+  serverTickRate: 100
   offlineScene: 
   onlineScene: 
   transport: {fileID: 8862471753244199101}
-  networkAddress: localhost
+  networkAddress: 98.33.95.25
   maxConnections: 100
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 0}
@@ -100,9 +100,9 @@ MonoBehaviour:
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
   NonAlloc: 1
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
+  debugLog: 1
+  statisticsGUI: 1
+  statisticsLog: 1
 --- !u!114 &623138957
 MonoBehaviour:
   m_ObjectHideFlags: 0

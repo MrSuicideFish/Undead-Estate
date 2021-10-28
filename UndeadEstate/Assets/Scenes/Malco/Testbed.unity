@@ -1018,7 +1018,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh250670
+  m_Name: pb_Mesh424092
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1682,6 +1682,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PrototypeZambie (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 4273796180773328329, guid: 7dfc680048b0a4847b30cc52aef9d062, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dfc680048b0a4847b30cc52aef9d062, type: 3}
 --- !u!1001 &1576696404
@@ -2179,6 +2183,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 667451180564827575, guid: a556de634454c99479a7b2d295e5a7da, type: 3}
+      propertyPath: networkAddress
+      value: localhost
+      objectReference: {fileID: 0}
     - target: {fileID: 7675771499325094956, guid: a556de634454c99479a7b2d295e5a7da, type: 3}
       propertyPath: StageCamera
       value: 

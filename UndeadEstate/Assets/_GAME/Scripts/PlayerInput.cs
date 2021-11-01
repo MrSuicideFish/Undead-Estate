@@ -7,8 +7,9 @@ public class PlayerInput : MonoBehaviour
     private PlayerModule _module;
     public bool debugMode = false;
 
-
     private Vector3 worldMousePos;
+    private bool isFiring;
+    private bool isAltFiring;
     
     private PlayerModule module
     {
@@ -22,12 +23,10 @@ public class PlayerInput : MonoBehaviour
         }
     }
     
-    
     private void Update()
     {
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
-
         module.Move(moveX, moveY);
 
         Ray r = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -36,7 +35,36 @@ public class PlayerInput : MonoBehaviour
         if (p.Raycast(r, out dist))
         {
             worldMousePos = r.GetPoint(dist);
-            module.SetLookPosition(worldMousePos);    
+            module.SetLookPosition(worldMousePos);
+        }
+
+        if (isFiring && (Input.GetMouseButtonUp(0) || !Input.GetMouseButton(0)))
+        {
+            isFiring = false;
+            module.StopFire();
+        }
+
+        if (isAltFiring && (Input.GetMouseButtonUp(1) || !Input.GetMouseButton(1)))
+        {
+            isAltFiring = false;
+            module.StopAltFire();
+        }
+        
+        if (!isFiring && Input.GetMouseButton(0))
+        {
+            module.Fire();
+            isFiring = true;
+        }
+        
+        if(!isAltFiring && Input.GetMouseButton(1))
+        {
+            module.AltFire();
+            isAltFiring = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            module.Reload();
         }
     }
 

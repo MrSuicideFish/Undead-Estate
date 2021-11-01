@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using Cinemachine;
 using Mirror;
 using Unity.Mathematics;
@@ -12,11 +13,11 @@ public class PlayerModule : NetworkBehaviour
 {
     public PlayerWeapon weapon;
 
-    public float walkSpeed = 5;
-    public float sprintSpeed = 5;
-    
-    public int health = 100;
-    public int armor = 0;
+    [SyncVar] public float walkSpeed = 5;
+    [SyncVar] public float sprintSpeed = 5;
+
+    [SyncVar] public int health = 100;
+    [SyncVar] public int armor = 0;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _moveCollider;
@@ -29,6 +30,15 @@ public class PlayerModule : NetworkBehaviour
     {
         _rigidbody = this.GetComponent<Rigidbody>();
         _moveCollider = this.GetComponent<CapsuleCollider>();
+    }
+
+    private void FixedUpdate()
+    {
+        float speed = walkSpeed;
+        _rigidbody.MovePosition(transform.position + (moveDirection * speed * Time.deltaTime));
+
+        // snap rotation
+        _rigidbody.MoveRotation(quaternion.Euler(0, rotation, 0));
     }
 
     public override void OnStartClient()
@@ -55,15 +65,17 @@ public class PlayerModule : NetworkBehaviour
 
         // set camera
         _camera = playerCam;
-        
+
+        PlayerInput input = this.gameObject.AddComponent<PlayerInput>();
         if (GetNetworkIdentity().isLocalPlayer)
         {
-            this.gameObject.AddComponent<PlayerInput>();
             _camera.gameObject.SetActive(true);
+            input.enabled = true;
         }
         else
         {
-            _camera.gameObject.SetActive( false );
+            _camera.gameObject.SetActive(false);
+            input.enabled = false;
         }
     }
 
@@ -81,15 +93,158 @@ public class PlayerModule : NetworkBehaviour
     {
         return _camera;
     }
-
+    
     public void Fire()
     {
-        
+        if (this.weapon != null) this.weapon.Fire();
+        if (isLocalPlayer)
+        {
+            if (isServer)
+            {
+                RpcFire();
+            }
+            else if(isClientOnly)
+            {
+                CmdFire();
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void RpcFire()
+    {
+        if (this.weapon != null) this.weapon.Fire();
+    }
+
+    [Command]
+    public void CmdFire()
+    {
+        if (this.weapon != null) this.weapon.Fire();
+    }
+
+    public void StopFire()
+    {
+        if (this.weapon != null) this.weapon.StopFire();
+        if (isLocalPlayer)
+        {
+            if (isServer)
+            {
+                RpcStopFire();
+            }
+            else if(isClientOnly)
+            {
+                CmdStopFire();
+            }
+        }
+    }
+
+    [Command]
+    public void CmdStopFire()
+    {
+        if (this.weapon != null) this.weapon.StopFire();
+    }
+    
+    [ClientRpc]
+    public void RpcStopFire()
+    {
+        if (this.weapon != null) this.weapon.StopFire();
     }
 
     public void AltFire()
     {
+        if (this.weapon != null) this.weapon.AltFire();
+        if (isLocalPlayer)
+        {
+            if (isServer)
+            {
+                RpcAltFire();
+            }
+            else if(isClientOnly)
+            {
+                CmdAltFire();
+            }
+        }
+    }
+    
+    [Command]
+    public void CmdAltFire()
+    {
+        if (this.weapon != null) this.weapon.AltFire();
+    }
+    
+    [ClientRpc]
+    public void RpcAltFire()
+    {
+        if (this.weapon != null) this.weapon.AltFire();
+    }
+
+    public void StopAltFire()
+    {
+        if (this.weapon != null) this.weapon.StopAltFire();
+        if (isLocalPlayer)
+        {
+            if (isServer)
+            {
+                RpcStopAltFire();
+            }
+            else if(isClientOnly)
+            {
+                CmdStopAltFire();
+            }
+        }
+    }
+    
         
+    [Command]
+    public void CmdStopAltFire()
+    {
+        if (this.weapon != null) this.weapon.AltFire();
+        
+    }
+    
+    [ClientRpc]
+    public void RpcStopAltFire()
+    {
+        if (this.weapon != null) this.weapon.AltFire();
+    }
+
+
+    public void Reload()
+    {
+        if (this.weapon != null)
+        {
+            this.weapon.Reload();
+        }
+        
+        if (isLocalPlayer)
+        {
+            if (isServer)
+            {
+                RpcReload();
+            }
+            else if(isClientOnly)
+            {
+                CmdReload();
+            }
+        }
+    }
+
+    [Command]
+    public void CmdReload()
+    {
+        if (this.weapon != null)
+        {
+            this.weapon.Reload();
+        }
+    }
+    
+    [ClientRpc]
+    public void RpcReload()
+    {
+        if (this.weapon != null)
+        {
+            this.weapon.Reload();
+        }
     }
 
     public void Move(float x, float z)
@@ -102,16 +257,35 @@ public class PlayerModule : NetworkBehaviour
         Vector3 dir = mouseWorldPos - transform.position;
         rotation = Mathf.Atan2(dir.x, dir.z);
     }
-
-    private void FixedUpdate()
+    
+    [Client]
+    public void GiveWeapon(EWeapon weaponType)
     {
-        float speed = walkSpeed;
-        _rigidbody.MovePosition(transform.position + (moveDirection * speed * Time.deltaTime));
+        if (this.weapon != null)
+        {
+            GameObject.Destroy(this.weapon.gameObject);
+        }
         
-        // snap rotation
-        //rotation = Snapping.Snap(rotation, 45.0f);
-        _rigidbody.MoveRotation(quaternion.Euler(0, rotation, 0));
+        PlayerWeapon newWeapon = PlayerWeapon.Create(weaponType);
+        if (newWeapon == null)
+        {
+            Debug.LogError("Failed to create weapon: " + weaponType);
+        }
+        
+        newWeapon.transform.SetParent(this.transform, true);
+        newWeapon.transform.localPosition = new Vector3(0.5f, 1, 0);
+        newWeapon.transform.localEulerAngles = Vector3.zero;
+
+        this.weapon = newWeapon;
     }
 
+    public bool HasWeapon(EWeapon weapon)
+    {
+        if (this.weapon == null)
+        {
+            return false;
+        }
 
+        return this.weapon.weaponType == weapon;
+    }
 }

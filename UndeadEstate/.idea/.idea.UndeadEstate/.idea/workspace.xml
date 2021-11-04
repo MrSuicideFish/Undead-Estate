@@ -2,29 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d160f049-9e06-44cd-a5d0-75b767b59d69" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Pickups/WeaponPickup.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Pickups/WeaponPickup.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/Damage.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/Damage.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/WeaponParticleManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/WeaponParticleManager.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/Weapon_Gun.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/Weapon_Gun.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UndeadEstate/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Malco/Testbed.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Malco/Testbed.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameInterfaces.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameDefinitions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameInterfaces.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/GameDefinitions.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Malco/WeaponRange.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Malco/WeaponRange.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Resources/Characters/Zambies/PrototypeZambie.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Resources/Characters/Zambies/PrototypeZambie.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/PlayerModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/PlayerModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapon.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapon/PlayerWeapon.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/PlayerWeapon.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapon/PlayerWeapon.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Weapons/PlayerWeapon.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/ZambieModule.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/ZambieModule.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_GAME/Scripts/Testing/WeaponRangeTestScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_GAME/Scripts/Testing/WeaponRangeTestScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +87,9 @@
       <workItem from="1635462463992" duration="3280000" />
       <workItem from="1635632054941" duration="2346000" />
       <workItem from="1635677709339" duration="1339000" />
-      <workItem from="1635723785125" duration="26812000" />
+      <workItem from="1635723785125" duration="27706000" />
+      <workItem from="1635910377568" duration="3616000" />
+      <workItem from="1635988651845" duration="1933000" />
     </task>
     <servers />
   </component>

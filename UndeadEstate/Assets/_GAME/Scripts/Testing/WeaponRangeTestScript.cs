@@ -5,24 +5,17 @@ using UnityEngine;
 
 public class WeaponRangeTestScript : MonoBehaviour
 {
-    [Serializable]
-    public class WeaponEntry
-    {
-        [SerializeField] public EWeapon weaponType;
-        [SerializeField] public PlayerWeapon weapon;
-    }
-
     public Camera rangeCamera;
     public Vector3 cameraOffset;
-    public WeaponEntry[] weaponRegistry;
+    public PlayerWeapon[] weaponRegistry;
 
     private void MoveCameraToWeapon(EWeapon weaponType)
     {
-        foreach (WeaponEntry entry in weaponRegistry)
+        foreach (PlayerWeapon entry in weaponRegistry)
         {
             if (entry.weaponType == weaponType)
             {
-                rangeCamera.transform.position = entry.weapon.transform.position + cameraOffset;
+                rangeCamera.transform.position = entry.transform.position + cameraOffset;
             }
         }
     }
@@ -31,7 +24,7 @@ public class WeaponRangeTestScript : MonoBehaviour
     {
         GUILayout.BeginHorizontal();
         {
-            foreach (WeaponEntry entry in weaponRegistry)
+            foreach (PlayerWeapon entry in weaponRegistry)
             {
                 GUILayout.BeginVertical();
                 {
@@ -44,17 +37,17 @@ public class WeaponRangeTestScript : MonoBehaviour
                     
                     if (GUILayout.Button("Fire"))
                     {
-                        entry.weapon.Fire();
+                        entry.Fire();
                     }
                     
                     if (GUILayout.Button("Alt Fire"))
                     {
-                        entry.weapon.AltFire();
+                        entry.AltFire();
                     }
                     
                     if (GUILayout.Button("Reload"))
                     {
-                        entry.weapon.Reload();
+                        entry.Reload();
                     }
                 }
                 GUILayout.EndVertical();

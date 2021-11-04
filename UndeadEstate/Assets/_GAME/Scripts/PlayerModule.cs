@@ -18,6 +18,7 @@ public class PlayerModule : NetworkBehaviour
 
     [SyncVar] public int health = 100;
     [SyncVar] public int armor = 0;
+    [SyncVar] public float stamina = 1.0f;
 
     private Rigidbody _rigidbody;
     private CapsuleCollider _moveCollider;
@@ -207,8 +208,7 @@ public class PlayerModule : NetworkBehaviour
     {
         if (this.weapon != null) this.weapon.AltFire();
     }
-
-
+    
     public void Reload()
     {
         if (this.weapon != null)

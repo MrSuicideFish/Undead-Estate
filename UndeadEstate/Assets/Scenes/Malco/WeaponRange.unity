@@ -443,8 +443,7 @@ MonoBehaviour:
   rangeCamera: {fileID: 1575547584}
   cameraOffset: {x: 0.4, y: 0.3, z: -0.5}
   weaponRegistry:
-  - weaponType: 0
-    weapon: {fileID: 1644586382}
+  - {fileID: 1644586382}
 --- !u!4 &1293747836
 Transform:
   m_ObjectHideFlags: 0
@@ -551,6 +550,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3881210935926422634, guid: c90d6b6ccac2d8e4b8788243a7bfbfb9, type: 3}
+      propertyPath: sceneId
+      value: 2212347282
+      objectReference: {fileID: 0}
     - target: {fileID: 7785913637620195835, guid: c90d6b6ccac2d8e4b8788243a7bfbfb9, type: 3}
       propertyPath: m_Name
       value: Weapon_Pistol

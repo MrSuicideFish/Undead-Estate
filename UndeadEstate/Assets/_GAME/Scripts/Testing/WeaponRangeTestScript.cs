@@ -38,6 +38,7 @@ public class WeaponRangeTestScript : MonoBehaviour
                     if (GUILayout.Button("Fire"))
                     {
                         entry.Fire();
+                        entry.StopFire();
                     }
                     
                     if (GUILayout.Button("Alt Fire"))
